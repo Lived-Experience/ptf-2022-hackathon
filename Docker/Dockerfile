@@ -7,6 +7,8 @@ SHELL ["/bin/bash","-c"]
 
 USER root
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Update and add some packages
 RUN apt-get update -y && apt-get install -y \
     sudo \
@@ -42,5 +44,3 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install -r /var/tmp/requirements.txt
 
 RUN git clone https://github.com/Lived-Experience/ptf-2022-hackathon.git
-
-RUN ldconfig
