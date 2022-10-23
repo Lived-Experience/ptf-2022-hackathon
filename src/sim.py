@@ -32,14 +32,20 @@ class DriftingCircle:
   def draw(self, surface):
     pygame.draw.circle(surface, color= (255,0,0), center= self.center, radius= 15)
 
+class Event:
+    def __init__(self, type, data):
+        self.type = type
+        self.data = data
+
 class GameSimulation:
   def __init__(self, viewer: viewer.Viewer):
     self.viewer = viewer
     self.all_objects = [DriftingCircle((WIDTH/2,HEIGHT/2))]
 
-  def update(self):
+  def update(self, event: Event):
     for obj in self.all_objects:
-      obj.update()
+      obj.update(event)
+
     self.viewer.set_current_scene(starting, None, ["first option", "second option"])
     s = self.viewer.selected_option()
     print(f"debug: User wants index {s}")

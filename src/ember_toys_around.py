@@ -26,7 +26,9 @@ def run_game():
         pass
       else:
         print(f"We saw an event like this! {event}")
+  
     gs.update()
+    
     screen.fill((0,0,0))
     gs.draw(screen)
     pygame.display.update()
