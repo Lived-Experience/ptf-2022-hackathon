@@ -1,6 +1,7 @@
 import random
 import pygame
 import viewer
+
 WIDTH = 1280
 HEIGHT = 800
 

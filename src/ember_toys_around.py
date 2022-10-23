@@ -1,14 +1,16 @@
 import pygame
 import random
+import sim
 
 # reminder: pygame coordinate system has (0,0) in top left
 # and (WIDTH,HEIGHT) in the bottom right.
 
+import viewer
 WIDTH = 1280
 HEIGHT = 800
 
 def run_game():
-  gs = GameSimulation()
+  gs = sim.GameSimulation(viewer.Viewer())
 
   pygame.init()
   screen = pygame.display.set_mode((1280,800))
