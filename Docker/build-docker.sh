@@ -9,7 +9,7 @@ echo "**Trans Game Docker** Build started, output in ${BUILD_OUTPUT_FILE}"
 #docker build --network=host --tag ${CONTAINER_TAG} ./ 2>&1 > $BUILD_OUTPUT_FILE
 
 # Uncomment to save build output log AND print to screen
-docker build --network=host --tag ${CONTAINER_TAG} 2>&1 | tee $BUILD_OUTPUT_FILE
+docker build --network=host --tag ${CONTAINER_TAG} ./ 2>&1 | tee $BUILD_OUTPUT_FILE
 
 # Some useful summary output
 echo "-------------------------------------------------------------"
