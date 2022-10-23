@@ -1,0 +1,63 @@
+import random
+import pygame
+import viewer
+WIDTH = 1280
+HEIGHT = 800
+
+starting="""Hello!  Welcome to the trans experience!
+\n
+Imagine yourself existing in the world as a trans person. Life isn't easy, but there are good things too. You'll encounter all kinds of transphobic microaggressions and friends/community members in this world and will have to decide how to interact with them. This game is meant to be fun an educational while showing the kinds of microaggressions that embolden and enable the more insidious violence. The reality in the world is far more brutal, especially for trans women and even more so for trans women of color.
+\n
+You can think of your Resistance Quotient (RQ) as your overall health - if you run all the way out the game is over. If you win ten awards by overcoming transphobes, you'll be declared pro trans. Try again and again to see how high you can score!"""
+
+def clamp(val, min, max):
+  if val < min:
+    return min, True
+  if val > max:
+    return max, True
+  return val, False
+
+class DriftingCircle:
+  """A red 50-px wide circle that drifts around slowly and randomly."""
+
+  def __init__(self, cent):
+    self.center = cent
+    self.drift_rate = 0.0002
+    self.vel = (0.05,-0.05)
+  
+  def update(self):
+    (x, y) = self.center
+    (dx,dy) = self.vel
+    nx, clamped = clamp(x+x*dx, 0, WIDTH)
+    if clamped:
+      dx = -dx
+
+    ny, clamped2 = clamp(y+y*dy, 0, HEIGHT)
+    if clamped2:
+      dy = -dy
+  
+    (dx,dy) = (random.uniform(dx - dx * self.drift_rate, dx + dx * self.drift_rate), random.uniform(dy - dy * self.drift_rate, dy + dy * self.drift_rate))
+    dx, _ = clamp(dx, -0.3,0.3)
+    dy, _ = clamp(dy, -0.3,0.3)
+    self.vel = (dx,dy)
+    self.center = (nx,ny)
+
+  def draw(self, surface):
+    pygame.draw.circle(surface, color= (255,0,0), center= self.center, radius= 15)
+
+class GameSimulation:
+  def __init__(self, viewer: viewer.Viewer):
+    self.viewer = viewer
+    self.all_objects = [DriftingCircle((WIDTH/2,HEIGHT/2))]
+
+  def update(self):
+    for obj in self.all_objects:
+      obj.update()
+    self.viewer.set_current_scene(starting, None, [])
+    s = self.viewer.selected_option()
+    print(f"debug: User wants {s}")
+
+  def draw(self, surface):
+    for obj in self.all_objects:
+      obj.draw(surface)
+  
