@@ -18,20 +18,6 @@ def clamp(val, min, max):
     return max, True
   return val, False
 
-class DriftingCircle:
-  """A red 50-px wide circle that drifts around slowly and randomly."""
-
-  def __init__(self, cent):
-    self.center = cent
-    self.drift_rate = 0.0002
-    self.vel = (0.05,-0.05)
-  
-  def update(self):
-    pass
- 
-  def draw(self, surface):
-    pygame.draw.circle(surface, color= (255,0,0), center= self.center, radius= 15)
-
 class Event:
     def __init__(self, type, data):
         self.type = type
@@ -40,9 +26,10 @@ class Event:
 class GameSimulation:
   def __init__(self, viewer: viewer.Viewer):
     self.viewer = viewer
-    self.all_objects = [DriftingCircle((WIDTH/2,HEIGHT/2))]
+    self.all_objects = []
 
   def update(self, event: Event):
+    print(f"debug: handling update for {event}")
     for obj in self.all_objects:
       obj.update(event)
 

@@ -5,7 +5,7 @@ import viewer
 
 import sys as cis
 
-from sim import GameSimulation
+from sim import GameSimulation,Event
 #import argparse
 #import importlib
 #import readconfig as cfg
@@ -13,7 +13,7 @@ from sim import GameSimulation
 def main():
     gs = GameSimulation(viewer.CliViewer())
     while True:
-        gs.update()
+        gs.update(Event("new frame", None))
     cis.exit()
 
 ####################
