@@ -7,7 +7,6 @@ import random
 WIDTH = 1280
 HEIGHT = 800
 
-
 def run_game():
   gs = GameSimulation()
 

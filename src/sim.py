@@ -53,11 +53,10 @@ class GameSimulation:
   def update(self):
     for obj in self.all_objects:
       obj.update()
-    self.viewer.set_current_scene(starting, None, [])
+    self.viewer.set_current_scene(starting, None, ["first option", "second option"])
     s = self.viewer.selected_option()
-    print(f"debug: User wants {s}")
+    print(f"debug: User wants index {s}")
 
   def draw(self, surface):
     for obj in self.all_objects:
       obj.draw(surface)
-  

@@ -3,7 +3,7 @@
 import sim
 import viewer
 
-import sys
+import sys as cis
 
 from sim import GameSimulation
 #import argparse
@@ -13,7 +13,7 @@ from sim import GameSimulation
 def main():
     gs = GameSimulation(viewer.CliViewer())
     gs.update()
-    sys.exit()
+    cis.exit()
 
 ####################
 ##     MAIN       ##
@@ -21,4 +21,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
