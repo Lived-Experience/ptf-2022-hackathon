@@ -12,7 +12,8 @@ from sim import GameSimulation
 
 def main():
     gs = GameSimulation(viewer.CliViewer())
-    gs.update()
+    while True:
+        gs.update()
     cis.exit()
 
 ####################

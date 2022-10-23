@@ -27,22 +27,8 @@ class DriftingCircle:
     self.vel = (0.05,-0.05)
   
   def update(self):
-    (x, y) = self.center
-    (dx,dy) = self.vel
-    nx, clamped = clamp(x+x*dx, 0, WIDTH)
-    if clamped:
-      dx = -dx
-
-    ny, clamped2 = clamp(y+y*dy, 0, HEIGHT)
-    if clamped2:
-      dy = -dy
-  
-    (dx,dy) = (random.uniform(dx - dx * self.drift_rate, dx + dx * self.drift_rate), random.uniform(dy - dy * self.drift_rate, dy + dy * self.drift_rate))
-    dx, _ = clamp(dx, -0.3,0.3)
-    dy, _ = clamp(dy, -0.3,0.3)
-    self.vel = (dx,dy)
-    self.center = (nx,ny)
-
+    pass
+ 
   def draw(self, surface):
     pygame.draw.circle(surface, color= (255,0,0), center= self.center, radius= 15)
 
